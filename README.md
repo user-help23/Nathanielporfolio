@@ -256,4 +256,5 @@ This template is great for learning:
 
 **Ready to customize?** Start by updating your name and contact information, then add your projects and skills. Good luck! 🚀
 #   N a t h a n i e l p o r f o l i o  
+ #   N a t h a n i e l p o r f o l i o  
  
