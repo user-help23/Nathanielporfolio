@@ -1,0 +1,55 @@
+# Git Ignore - Exclude sensitive files from version control
+
+# Environment variables (sensitive data)
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Configuration files with secrets
+config.js
+config.json
+config.private.*
+
+# Node modules (if using any tools)
+node_modules/
+package-lock.json
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+dist/
+build/
+*.map
+
+# OS files
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Archive files
+*.zip
+*.rar
+*.7z
+
+# Don't ignore these important files
+!.gitkeep
+!README.md
+!index.html
+!styles.css
+!script.js
