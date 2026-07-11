@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Nathan Patrick- Aspiring Software Developer</title>
+    <title>Nathaniel Patrick - Co-Founder & Chief Software Officer</title>
     
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,7 +22,7 @@
         <div class="navbar-container">
             <div class="navbar-logo">
                 <i class="fas fa-code"></i>
-                <span Nathaniel patrick /span>
+                <span>Nathaniel Patrick</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -41,11 +41,15 @@
     <!-- ============= HERO SECTION ============= -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Nathan Patrick</h1>
-            <p class="hero-subtitle">Aspiring Software Developer</p>
+            <div class="hero-badge">Dark Mode • Portfolio</div>
+            <h1 class="hero-title">
+                <span class="hero-greeting">Hi, I’m</span>
+                <span id="typed-name" class="hero-name"></span>
+                <span class="typing-cursor" aria-hidden="true">|</span>
+            </h1>
+            <p class="hero-subtitle">Co-Founder & Chief Software Officer at TrianryTree</p>
             <p class="hero-description">
-                I'm passionate about building beautiful, functional web applications that solve real-world problems.
-                Let's create something amazing together.
+                Building intelligent SaaS and ML solutions that drive real-world impact. Specializing in scalable architecture, machine learning engineering, and cloud infrastructure.
             </p>
             <a href="#projects" class="cta-button">View Projects</a>
         </div>
@@ -59,33 +63,48 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a passionate developer with a keen interest in creating elegant solutions to complex problems.
-                        I believe in clean code, continuous learning, and collaborative teamwork.
-                        Currently exploring full-stack development and modern web technologies.
+                        I'm Nathaniel Patrick, co-founder and Chief Software Officer at TrianryTree, where we're building intelligent SaaS and ML platforms designed to solve complex, real-world problems. My expertise spans full-stack software architecture, machine learning engineering, and cloud infrastructure—with a proven track record of shipping production systems at scale.
+                    </p>
+                    <p>
+                        At TrianryTree, I lead technical strategy and product development, focusing on delivering robust, scalable solutions that combine cutting-edge ML capabilities with enterprise-grade software engineering. I'm passionate about bridging the gap between theoretical AI and practical, impactful applications.
                     </p>
                 </div>
-                
-                <div class="skills-section">
-                    <h3>Skills</h3>
+            </div>
+            
+            <div class="skills-section">
+                <div class="container">
+                    <h3>Core Expertise</h3>
                     <div class="skills-grid">
                         <div class="skill-card">
-                            <i class="fas fa-globe"></i>
-                            <span>Add your skills here</span>
+                            <i class="fas fa-brain"></i>
+                            <span>Machine Learning & AI</span>
                         </div>
                         <div class="skill-card">
-                            <i class="fas fa-database"></i>
-                            <span>Add your skills here</span>
+                            <i class="fas fa-python"></i>
+                            <span>Python Frameworks</span>
                         </div>
                         <div class="skill-card">
-                            <i class="fas fa-tools"></i>
-                            <span>Add your skills here</span>
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud Development</span>
                         </div>
                         <div class="skill-card">
                             <i class="fas fa-code"></i>
-                            <span>Add your skills here</span>
+                            <span>Full-Stack Architecture</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============= CERTIFICATIONS SECTION ============= -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Professional credentials and industry recognition</p>
+            
+            <div class="certifications-grid">
+                <!-- Certifications will be added here -->
             </div>
         </div>
     </section>
@@ -94,75 +113,64 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">Placeholder - Add your projects here</p>
-            
+            <p class="section-subtitle">Selected work spanning secure systems, machine learning, and real-world product launches.</p>
+
             <div class="projects-grid">
-                <!-- Project Card 1 -->
                 <div class="project-card">
-                    <div class="project-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <p>Add Project</p>
+                    <div class="project-placeholder project-image-wrap">
+                        <img src="Eden Bank.png" alt="Eden Bank project preview" class="project-image" />
                     </div>
-                    <h3 class="project-title">Project Title</h3>
-                    <p class="project-description">Description goes here...</p>
+                    <h3 class="project-title">Eden Bank</h3>
+                    <p class="project-description">Engineered a secure banking platform using Node.js/Express and SQLite, with Stripe-powered transactions and JWT-based authentication.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Tech Stack</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">Stripe</span>
                     </div>
-                    <a href="#" class="project-link" aria-label="View project">
-                        <span>View Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="project-links">
+                        <a href="https://edenbank.vercel.app/login" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Eden Bank project">
+                            <span>Live Demo</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Project Card 2 -->
                 <div class="project-card">
-                    <div class="project-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <p>Add Project</p>
+                    <div class="project-placeholder project-image-wrap">
+                        <img src="bio-tester.png" alt="Bio-Tester project preview" class="project-image" />
                     </div>
-                    <h3 class="project-title">Project Title</h3>
-                    <p class="project-description">Description goes here...</p>
+                    <h3 class="project-title">Bio-Tester</h3>
+                    <p class="project-description">Developed a predictive ML system for clinical trials using PyTorch, RDKit, and BioPython, achieving 85% accuracy in drug efficacy forecasting.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Tech Stack</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">GNNs</span>
+                        <span class="tech-tag">BioPython</span>
                     </div>
-                    <a href="#" class="project-link" aria-label="View project">
-                        <span>View Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <div class="project-links">
+                        <a href="https://bio-tester.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Bio-Tester project">
+                            <span>Live Demo</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Project Card 3 -->
                 <div class="project-card">
-                    <div class="project-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <p>Add Project</p>
+                    <div class="project-placeholder project-image-wrap">
+                        <img src="Beegee.png" alt="Beegee project preview" class="project-image" />
                     </div>
-                    <h3 class="project-title">Project Title</h3>
-                    <p class="project-description">Description goes here...</p>
+                    <h3 class="project-title">Beegee</h3>
+                    <p class="project-description">Built and launched an e-commerce platform tailored for university students, scaling to 100+ daily active users and becoming the official marketplace for Bingham University students.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Tech Stack</span>
+                        <span class="tech-tag">E-commerce</span>
+                        <span class="tech-tag">Growth</span>
+                        <span class="tech-tag">Student Platform</span>
                     </div>
-                    <a href="#" class="project-link" aria-label="View project">
-                        <span>View Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="project-card">
-                    <div class="project-placeholder">
-                        <i class="fas fa-plus"></i>
-                        <p>Add Project</p>
+                    <div class="project-links">
+                        <a href="http://beegee.com.ng" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Beegee project">
+                            <span>Visit Site</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <h3 class="project-title">Project Title</h3>
-                    <p class="project-description">Description goes here...</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Tech Stack</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View project">
-                        <span>View Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -183,7 +191,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <a href="nathanielpatrick@gmail.com">nathanielpatrick@gmail.com</a>
+                            <a href="mailto:nathanielpatrick1000@gmail.com">nathanielpatrick1000@gmail.com</a>
                     </div>
 
                     <div class="contact-item">
@@ -202,16 +210,27 @@
                         </div>
                     </div>
 
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <a href="#" id="whatsappLink" target="_blank" rel="noopener noreferrer">Click to send message</a>
+                        </div>
+                    </div>
+
                     <!-- Social Icons -->
                     <div class="social-icons-contact">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:your.email@example.com" aria-label="Email" class="social-icon">
+                        <a href="mailtonathanielpatrick1000@gmail.com" aria-label="Email" class="social-icon">
                             <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" id="whatsappIcon" aria-label="WhatsApp" class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
@@ -225,7 +244,7 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        <input type="email" id="email" name="email" placeholder="nathanielpatrick1000@gmail" required>
                     </div>
 
                     <div class="form-group">
@@ -244,7 +263,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2026 Your Name. All rights reserved.</p>
+                    <p>&copy; 2026 Nathaniel Patrick. All rights reserved.</p>
                 </div>
                 
                 <div class="footer-socials">
@@ -254,7 +273,7 @@
                     <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-link">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="mailto:your.email@example.com" aria-label="Email" class="footer-link">
+                    <a href="mailto:nathanielpatrick1000@gmail.com" aria-label="Email" class="footer-link">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
