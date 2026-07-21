@@ -99,12 +99,12 @@ export const PROJECTS = [
 export const SOCIAL_LINKS = [
   {
     name: 'GitHub',
-    url: 'https://github.com',
+    url: 'https://user-help23github.com',
     icon: 'github',
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com',
+    url: 'https://nathanielpatrick.linkedin.com',
     icon: 'linkedin',
   },
   {

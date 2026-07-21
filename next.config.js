@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    useWasmBinary: true,
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

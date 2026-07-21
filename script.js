@@ -65,3 +65,37 @@ function typeName() {
 }
 
 typeName();
+
+const neuralSkills = document.querySelectorAll('.neural-skill');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function createSkillPulse(card, x, y) {
+    if (prefersReducedMotion || document.hidden) return;
+    const pulse = document.createElement('span');
+    pulse.className = 'skill-pulse';
+    pulse.style.left = `${x}px`;
+    pulse.style.top = `${y}px`;
+    card.appendChild(pulse);
+    pulse.addEventListener('animationend', () => pulse.remove());
+}
+
+neuralSkills.forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+        const now = Date.now();
+        const lastPulse = Number(card.dataset.lastPulse || 0);
+        if (now - lastPulse < 180) return;
+        card.dataset.lastPulse = String(now);
+        const rect = card.getBoundingClientRect();
+        createSkillPulse(card, event.clientX - rect.left, event.clientY - rect.top);
+    });
+});
+
+setInterval(() => {
+    if (!neuralSkills.length) return;
+    const card = neuralSkills[Math.floor(Math.random() * neuralSkills.length)];
+    createSkillPulse(
+        card,
+        24 + Math.random() * (card.clientWidth - 48),
+        24 + Math.random() * (card.clientHeight - 48)
+    );
+}, 1300);

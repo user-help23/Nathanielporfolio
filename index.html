@@ -21,7 +21,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <i class="fas fa-code"></i>
+                <span class="logo-mark" aria-hidden="true">NP</span>
                 <span>Nathaniel Patrick</span>
             </div>
             <ul class="nav-menu">
@@ -41,7 +41,6 @@
     <!-- ============= HERO SECTION ============= -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-badge">Dark Mode • Portfolio</div>
             <h1 class="hero-title">
                 <span class="hero-greeting">Hi, I’m</span>
                 <span id="typed-name" class="hero-name"></span>
@@ -61,6 +60,15 @@
             <h2 class="section-title">About Me</h2>
             
             <div class="about-content">
+                <div class="about-photo-frame">
+                    <!-- Replace the src with your picture file, for example: src="my-photo.jpg" -->
+                    <img alt="Nathaniel Patrick portrait" class="about-photo">
+                    <div class="about-photo-placeholder" aria-hidden="true">
+                        <i class="fas fa-user"></i>
+                        <span>Add your picture</span>
+                    </div>
+                </div>
+
                 <div class="about-text">
                     <p>
                         I'm Nathaniel Patrick, co-founder and Chief Software Officer at TrianryTree, where we're building intelligent SaaS and ML platforms designed to solve complex, real-world problems. My expertise spans full-stack software architecture, machine learning engineering, and cloud infrastructure—with a proven track record of shipping production systems at scale.
@@ -75,19 +83,23 @@
                 <div class="container">
                     <h3>Core Expertise</h3>
                     <div class="skills-grid">
-                        <div class="skill-card">
+                        <div class="skill-card neural-skill" data-skill="Machine Learning">
                             <i class="fas fa-brain"></i>
                             <span>Machine Learning & AI</span>
                         </div>
-                        <div class="skill-card">
+                        <div class="skill-card neural-skill" data-skill="Python">
                             <i class="fas fa-python"></i>
                             <span>Python Frameworks</span>
                         </div>
-                        <div class="skill-card">
+                        <div class="skill-card neural-skill" data-skill="Cloud">
                             <i class="fas fa-cloud"></i>
                             <span>Cloud Development</span>
                         </div>
-                        <div class="skill-card">
+                        <div class="skill-card neural-skill" data-skill="Security">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Pentesting & Ethical Hacking</span>
+                        </div>
+                        <div class="skill-card neural-skill" data-skill="Architecture">
                             <i class="fas fa-code"></i>
                             <span>Full-Stack Architecture</span>
                         </div>
@@ -104,7 +116,50 @@
             <p class="section-subtitle">Professional credentials and industry recognition</p>
             
             <div class="certifications-grid">
-                <!-- Certifications will be added here -->
+                <article class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div>
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
+                            <span>View credential</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div>
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
+                            <span>View credential</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
+                            <span>View credential</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -185,52 +240,18 @@
             <div class="contact-wrapper">
                 <!-- Contact Info -->
                 <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:nathanielpatrick1000@gmail.com">nathanielpatrick1000@gmail.com</a>
-                    </div>
+                    <h3>Social Links</h3>
 
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <h4>GitHub</h4>
-                            <a href="https://user-help23github.com" target="_blank" rel="noopener noreferrer">github.com/yourprofile</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourprofile</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <h4>WhatsApp</h4>
-                            <a href="#" id="whatsappLink" target="_blank" rel="noopener noreferrer">Click to send message</a>
-                        </div>
-                    </div>
-
-                    <!-- Social Icons -->
                     <div class="social-icons-contact">
-                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+                        <!-- Replace these href values with your real links. -->
+                        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+                        <a href="https://twitter.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
                             <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="mailtonathanielpatrick1000@gmail.com" aria-label="Email" class="social-icon">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="#" id="whatsappIcon" aria-label="WhatsApp" class="social-icon">
-                            <i class="fab fa-whatsapp"></i>
                         </a>
                     </div>
                 </div>
@@ -267,14 +288,14 @@
                 </div>
                 
                 <div class="footer-socials">
-                    <a href="https://user-help23github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-link">
+                    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-link">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-link">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://twitter.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="footer-link">
+                        <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="mailto:nathanielpatrick1000@gmail.com" aria-label="Email" class="footer-link">
-                        <i class="fas fa-envelope"></i>
+                    <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-link">
+                        <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
             </div>

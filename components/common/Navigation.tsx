@@ -12,13 +12,32 @@ interface NavigationProps {
 export default function Navigation({ isDarkMode, toggleDarkMode }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    const sectionIds = ['home', 'about', 'projects', 'certifications', 'contact'];
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      const scrollPosition = window.scrollY + window.innerHeight * 0.24;
+      let currentSection = 'home';
+
+      sectionIds.forEach((sectionId) => {
+        const sectionElement = document.getElementById(sectionId);
+        if (!sectionElement) return;
+
+        const top = sectionElement.offsetTop;
+        if (scrollPosition >= top) {
+          currentSection = sectionId;
+        }
+      });
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -26,7 +45,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode }: NavigationPro
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Projects' },
-    { href: '#certifications', label: 'Certifications' },
+    { href: '#certifications', label: 'Credentials' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -49,20 +68,27 @@ export default function Navigation({ isDarkMode, toggleDarkMode }: NavigationPro
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                whileHover={{ scale: 1.05 }}
-                className={`text-sm font-medium transition-colors ${
-                  isDarkMode
-                    ? 'text-gray-300 hover:text-blue-400'
-                    : 'text-gray-700 hover:text-blue-600'
-                }`}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  whileHover={{ scale: 1.03 }}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive
+                      ? isDarkMode
+                        ? 'text-blue-300'
+                        : 'text-blue-600'
+                      : isDarkMode
+                      ? 'text-gray-300 hover:text-blue-400'
+                      : 'text-gray-700 hover:text-blue-600'
+                  } ${isActive ? 'underline decoration-blue-500/30 underline-offset-4' : ''}`}
+                >
+                  {link.label}
+                </motion.a>
+              );
+            })}
           </div>
 
           {/* Right Actions */}
@@ -96,6 +122,8 @@ export default function Navigation({ isDarkMode, toggleDarkMode }: NavigationPro
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 flex flex-col justify-between">
@@ -119,6 +147,7 @@ export default function Navigation({ isDarkMode, toggleDarkMode }: NavigationPro
 
       {/* Mobile Menu */}
       <motion.div
+        id="mobile-menu"
         initial={{ opacity: 0, height: 0 }}
         animate={isOpen ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
         transition={{ duration: 0.3 }}

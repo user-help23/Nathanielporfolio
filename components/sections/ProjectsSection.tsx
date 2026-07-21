@@ -121,10 +121,10 @@ export default function ProjectsSection({ isDarkMode }: ProjectsSectionProps) {
           className="text-center mt-12"
         >
           <a
-            href="#"
-            className="inline-block px-8 py-3 rounded-lg font-semibold transition-all bg-blue-600 text-white hover:bg-blue-700"
+            href="#contact"
+            className="inline-block px-8 py-3 rounded-lg font-semibold transition-all bg-blue-600 text-white hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           >
-            View All Projects
+            Talk about your project
           </a>
         </motion.div>
       </div>
