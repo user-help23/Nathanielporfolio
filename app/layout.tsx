@@ -63,9 +63,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased`}
+        className={`${inter.variable} ${poppins.variable} antialiased bg-neutral-950 text-white font-sans tracking-tight`}
       >
-        {children}
+        <main className="min-h-screen flex flex-col justify-center px-6 md:px-16">
+          {children}
+        </main>
       </body>
     </html>
   );

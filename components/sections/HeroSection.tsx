@@ -11,6 +11,9 @@ export default function HeroSection({ isDarkMode }: HeroSectionProps) {
   const [displayName, setDisplayName] = useState('');
   const [isNameVisible, setIsNameVisible] = useState(false);
 
+  const [subtitle, setSubtitle] = useState('');
+  const [isSubtitleVisible, setIsSubtitleVisible] = useState(false);
+
   useEffect(() => {
     const fullName = 'Nathaniel Patrick';
     let typingTimer: ReturnType<typeof setTimeout>;
@@ -48,6 +51,45 @@ export default function HeroSection({ isDarkMode }: HeroSectionProps) {
       clearTimeout(typingTimer);
       clearTimeout(cycleTimer);
       clearTimeout(resetTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    const TYPING_SPEED = 55;
+    const HOLD_DURATION = 15000;
+    const text = 'Nathaniel Patrick, Co-Founder and Chief Software Officer at Trinary Tree';
+    let typingTimer: ReturnType<typeof setTimeout>;
+    let displayTimer: ReturnType<typeof setTimeout>;
+    let cycleTimer: ReturnType<typeof setTimeout>;
+
+    const runCycle = () => {
+      setSubtitle('');
+      setIsSubtitleVisible(true);
+
+      let currentIndex = 0;
+      const typeNextChar = () => {
+        if (currentIndex <= text.length) {
+          setSubtitle(text.slice(0, currentIndex));
+          currentIndex += 1;
+          typingTimer = setTimeout(typeNextChar, TYPING_SPEED);
+        } else {
+          displayTimer = setTimeout(() => {
+            setIsSubtitleVisible(false);
+            setSubtitle('');
+            cycleTimer = setTimeout(runCycle, 2000);
+          }, HOLD_DURATION);
+        }
+      };
+
+      typeNextChar();
+    };
+
+    runCycle();
+
+    return () => {
+      clearTimeout(typingTimer);
+      clearTimeout(displayTimer);
+      clearTimeout(cycleTimer);
     };
   }, []);
 
@@ -120,7 +162,7 @@ export default function HeroSection({ isDarkMode }: HeroSectionProps) {
               <p className={`text-xl md:text-2xl font-medium mb-3 ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Co-Founder & Chief Software Officer at TrianryTree
+                {isSubtitleVisible ? subtitle : ''}
               </p>
 
               <p className={`text-lg leading-relaxed mb-8 max-w-2xl ${

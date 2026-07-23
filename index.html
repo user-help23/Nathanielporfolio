@@ -21,8 +21,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <span class="logo-mark" aria-hidden="true">NP</span>
-                <span>Nathaniel Patrick</span>
+                <span>nathan builds</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -42,15 +41,16 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">
-                <span class="hero-greeting">Hi, I’m</span>
-                <span id="typed-name" class="hero-name"></span>
-                <span class="typing-cursor" aria-hidden="true">|</span>
+                Nathaniel Patrick Co-Founder &amp; CSO of Trinary Tree
             </h1>
-            <p class="hero-subtitle">Co-Founder & Chief Software Officer at TrianryTree</p>
+            <p class="hero-subtitle">Nathaniel Patrick, Co-Founder and Chief Software Officer of Trinary Tree</p>
             <p class="hero-description">
                 Building intelligent SaaS and ML solutions that drive real-world impact. Specializing in scalable architecture, machine learning engineering, and cloud infrastructure.
             </p>
             <a href="#projects" class="cta-button">View Projects</a>
+        </div>
+        <div class="dot-container" aria-hidden="true">
+            <div class="moving-dot"></div>
         </div>
     </section>
 
@@ -61,7 +61,8 @@
             
             <div class="about-content">
                 <div class="about-photo-frame">
-                    <img src="IMG-20260721-WA0139(1).jpg" alt="Nathaniel Patrick portrait" class="about-photo">
+                    <!-- Replace the src with your picture file, for example: src="my-photo.jpg" -->
+                    <img alt="Nathaniel Patrick portrait" class="about-photo">
                     <div class="about-photo-placeholder" aria-hidden="true">
                         <i class="fas fa-user"></i>
                         <span>Add your picture</span>
@@ -116,14 +117,14 @@
             
             <div class="certifications-grid">
                 <article class="certification-card">
-                    <div class="certification-image">
-                        <img src="IMG-20260721-WA0137(1).jpg" alt="Getting Started with Cybersecurity certificate">
+                    <div class="certification-icon">
+                        <i class="fas fa-certificate"></i>
                     </div>
                     <div>
-                        <h4>Getting Started with Cybersecurity</h4>
-                        <p>IBM SkillsBuild</p>
-                        <span class="certification-date">June 07, 2026</span>
-                        <a href="IMG-20260721-WA0137(1).jpg" target="_blank" rel="noopener noreferrer" class="certification-link">
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
                             <span>View credential</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -131,14 +132,14 @@
                 </article>
 
                 <article class="certification-card">
-                    <div class="certification-image">
-                        <img src="IMG-20260721-WA0138.jpg" alt="Artificial Intelligence certificate">
+                    <div class="certification-icon">
+                        <i class="fas fa-award"></i>
                     </div>
                     <div>
-                        <h4>Artificial Intelligence</h4>
-                        <p>IBM SkillsBuild</p>
-                        <span class="certification-date">May 29, 2026</span>
-                        <a href="IMG-20260721-WA0138.jpg" target="_blank" rel="noopener noreferrer" class="certification-link">
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
                             <span>View credential</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -146,14 +147,14 @@
                 </article>
 
                 <article class="certification-card">
-                    <div class="certification-image">
-                        <img src="IMG-20260721-WA0145.jpg" alt="Back End Development certificate">
+                    <div class="certification-icon">
+                        <i class="fas fa-shield-halved"></i>
                     </div>
                     <div>
-                        <h4>Back End Development</h4>
-                        <p>IBM SkillsBuild</p>
-                        <span class="certification-date">June 07, 2026</span>
-                        <a href="IMG-20260721-WA0145.jpg" target="_blank" rel="noopener noreferrer" class="certification-link">
+                        <h4>Certification Title</h4>
+                        <p>Issuing Organization</p>
+                        <span class="certification-date">Month Year</span>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link">
                             <span>View credential</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -172,18 +173,22 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-placeholder project-image-wrap">
-                        <img src="Eden Bank.png" alt="Eden Bank project preview" class="project-image" />
+                        <div class="project-image-placeholder"></div>
                     </div>
                     <h3 class="project-title">Eden Bank</h3>
-                    <p class="project-description">Engineered a secure banking platform using Node.js/Express and SQLite, with Stripe-powered transactions and JWT-based authentication.</p>
+                    <p class="project-description">Engineered secure banking platform using Node.js/Express + SQLite for account management and Stripe integrations handling 5k simulated users with 99.9% transaction uptime and 30% faster authentication via JWT.</p>
                     <div class="project-tech">
                         <span class="tech-tag">Node.js</span>
                         <span class="tech-tag">Express</span>
                         <span class="tech-tag">Stripe</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://edenbank.vercel.app/login" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Eden Bank project">
+                        <a href="https://edenbank.vercel.app/login" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Eden Bank live demo">
                             <span>Live Demo</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://github.com/user-help23" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Eden Bank GitHub repository">
+                            <span>GitHub Repo</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -191,18 +196,22 @@
 
                 <div class="project-card">
                     <div class="project-placeholder project-image-wrap">
-                        <img src="bio-tester.png" alt="Bio-Tester project preview" class="project-image" />
+                        <div class="project-image-placeholder"></div>
                     </div>
                     <h3 class="project-title">Bio-Tester</h3>
-                    <p class="project-description">Developed a predictive ML system for clinical trials using PyTorch, RDKit, and BioPython, achieving 85% accuracy in drug efficacy forecasting.</p>
+                    <p class="project-description">Predictive ML system for clinical trials using RDKit/BioPython and PyTorch on TDC/ChEMBL datasets with graph neural networks achieving 85% accuracy in drug efficacy forecasts.</p>
                     <div class="project-tech">
                         <span class="tech-tag">PyTorch</span>
                         <span class="tech-tag">GNNs</span>
                         <span class="tech-tag">BioPython</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://bio-tester.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Bio-Tester project">
+                        <a href="https://bio-tester.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Bio-Tester live demo">
                             <span>Live Demo</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://github.com/user-help23" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Bio-Tester GitHub repository">
+                            <span>GitHub Repo</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -210,18 +219,18 @@
 
                 <div class="project-card">
                     <div class="project-placeholder project-image-wrap">
-                        <img src="Beegee.png" alt="Beegee project preview" class="project-image" />
+                        <div class="project-image-placeholder"></div>
                     </div>
                     <h3 class="project-title">Beegee</h3>
-                    <p class="project-description">Built and launched an e-commerce platform tailored for university students, scaling to 100+ daily active users and becoming the official marketplace for Bingham University students.</p>
+                    <p class="project-description">An ecommerce marketing platform for students. Beegee is one of Nigeria's leading student online convenience stores with over 100 daily users. It is the official buying and selling platform for Bingham University students, Nigeria.</p>
                     <div class="project-tech">
                         <span class="tech-tag">E-commerce</span>
                         <span class="tech-tag">Growth</span>
                         <span class="tech-tag">Student Platform</span>
                     </div>
                     <div class="project-links">
-                        <a href="http://beegee.com.ng" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Beegee project">
-                            <span>Visit Site</span>
+                        <a href="https://beegee.com.ng" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Beegee live demo">
+                            <span>Live Demo</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -236,44 +245,13 @@
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-subtitle">Have a project in mind? Let's collaborate!</p>
             
-            <div class="contact-wrapper">
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <h3>Social Links</h3>
-
-                    <div class="social-icons-contact">
-                        <!-- Replace these href values with your real links. -->
-                        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://twitter.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
+            <div class="contact-wrapper" style="max-width: 600px; margin: 0 auto;">
+                <div class="contact-links">
+                    <a href="https://github.com/user-help23" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="mailto:nathanielpatrick1000@gmail.com">Email</a>
+                    <a href="https://wa.me/2347026626565" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a href="https://www.linkedin.com/in/nathaniel-patrick" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
-
-                <!-- Contact Form -->
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="nathanielpatrick1000@gmail" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Your message here..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
             </div>
         </div>
     </section>

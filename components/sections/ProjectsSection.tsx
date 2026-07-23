@@ -1,20 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { PROJECTS } from '@/lib/constants';
 
 interface ProjectsSectionProps {
   isDarkMode: boolean;
 }
 
 export default function ProjectsSection({ isDarkMode }: ProjectsSectionProps) {
-  const projects = Array.from({ length: 5 }, (_, i) => ({
-    id: i + 1,
-    title: `Project ${i + 1} - Coming Soon`,
-    description: 'Project description placeholder. Replace with your actual project details.',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    link: '#',
-    image: `Project ${i + 1}`,
-  }));
+  const projects = PROJECTS.filter((p) => p.featured);
 
   return (
     <section
@@ -43,7 +37,7 @@ export default function ProjectsSection({ isDarkMode }: ProjectsSectionProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -52,81 +46,83 @@ export default function ProjectsSection({ isDarkMode }: ProjectsSectionProps) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
-              className={`group rounded-xl overflow-hidden transition-all duration-300 ${
+              className={`group rounded-xl overflow-hidden transition-all duration-300 flex flex-col ${
                 isDarkMode
                   ? 'bg-gray-900 border border-gray-800 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-600/20'
                   : 'bg-gray-50 border border-gray-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-400/20'
               }`}
             >
-              <div className={`h-48 flex items-center justify-center px-6 text-center text-2xl font-bold transition-colors ${
+              <div className={`h-48 flex items-center justify-center text-center text-sm font-semibold transition-colors overflow-hidden ${
                 isDarkMode
-                  ? 'bg-gradient-to-br from-gray-800 to-gray-700 text-blue-300 group-hover:from-blue-900 group-hover:to-purple-900'
-                  : 'bg-gradient-to-br from-gray-100 to-gray-200 text-blue-600 group-hover:from-blue-100 group-hover:to-purple-100'
+                  ? 'bg-gray-900 text-gray-400'
+                  : 'bg-gray-100 text-gray-600'
               }`}>
-                {project.image}
+                <span className="px-4">{project.title}</span>
               </div>
 
-              <div className="p-6">
-                <h3 className={`text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors ${
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className={`text-xl font-bold mb-2 ${
                   isDarkMode ? 'text-white' : 'text-gray-950'
                 }`}>
                   {project.title}
                 </h3>
 
-                <p className={`text-sm mb-4 line-clamp-2 ${
+                <p className={`text-sm mb-4 flex-grow ${
                   isDarkMode ? 'text-gray-400' : 'text-gray-600'
                 }`}>
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
+                  {project.technologies.map((tech) => (
                     <span
-                      key={tag}
+                      key={tech}
                       className={`text-xs px-3 py-1 rounded-full ${
                         isDarkMode
                           ? 'bg-blue-950 text-blue-300'
                           : 'bg-blue-100 text-blue-700'
                       }`}
                     >
-                      {tag}
+                      {tech}
                     </span>
                   ))}
                 </div>
 
-                <motion.a
-                  href={project.link}
-                  whileHover={{ x: 5 }}
-                  className={`inline-flex items-center gap-2 text-sm font-medium ${
-                    isDarkMode
-                      ? 'text-blue-400 hover:text-blue-300'
-                      : 'text-blue-600 hover:text-blue-700'
-                  }`}
-                >
-                  View Project
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.a>
+                <div className="flex gap-2 mt-auto">
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ x: 2 }}
+                    className={`flex-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all text-center ${
+                      isDarkMode
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                    }`}
+                  >
+                    Live Demo
+                  </motion.a>
+                  
+                  {project.github && (
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ x: 2 }}
+                      className={`flex-1 px-4 py-2 rounded-lg text-sm font-semibold transition-all text-center ${
+                        isDarkMode
+                          ? 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                          : 'bg-gray-200 text-gray-800 hover:bg-gray-300 border border-gray-300'
+                      }`}
+                    >
+                      GitHub
+                    </motion.a>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <a
-            href="#contact"
-            className="inline-block px-8 py-3 rounded-lg font-semibold transition-all bg-blue-600 text-white hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-          >
-            Talk about your project
-          </a>
-        </motion.div>
       </div>
     </section>
   );

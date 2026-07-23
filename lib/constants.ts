@@ -52,43 +52,35 @@ export const SKILLS = [
 export const PROJECTS = [
   {
     id: 1,
-    title: 'TrianryTree Platform',
+    title: 'Eden Bank',
     description:
-      'Enterprise SaaS platform combining machine learning with cloud infrastructure for data processing and analytics.',
-    technologies: ['Next.js', 'Python', 'TensorFlow', 'AWS'],
-    link: 'https://trianrytree.com',
-    status: 'In Progress',
+      'Engineered secure banking platform using Node.js/Express + SQLite for account management and Stripe integrations handling 5k simulated users with 99.9% transaction uptime and 30% faster authentication via JWT.',
+    technologies: ['Node.js', 'Express', 'SQLite', 'Stripe', 'JWT'],
+    link: 'https://edenbank.vercel.app/login',
+    github: 'https://github.com/user-help23',
+    status: 'Completed',
     featured: true,
   },
   {
     id: 2,
-    title: 'AI Content Generator',
+    title: 'Bio-Tester',
     description:
-      'Intelligent content generation tool powered by fine-tuned language models for marketing and creative writing.',
-    technologies: ['React', 'Node.js', 'OpenAI API', 'MongoDB'],
-    link: '#',
+      'Predictive ML system for clinical trials using RDKit/BioPython and PyTorch on TDC/ChEMBL datasets with graph neural networks achieving 85% accuracy in drug efficacy forecasts.',
+    technologies: ['PyTorch', 'RDKit', 'BioPython', 'Graph Neural Networks', 'ML'],
+    link: 'https://bio-tester.vercel.app',
+    github: 'https://github.com/user-help23',
     status: 'Completed',
     featured: true,
   },
   {
     id: 3,
-    title: 'Cloud Data Pipeline',
+    title: 'Beegee',
     description:
-      'Scalable ETL pipeline for processing and transforming large datasets with real-time monitoring and alerting.',
-    technologies: ['Python', 'Airflow', 'Spark', 'GCP'],
-    link: '#',
+      'An ecommerce marketing platform for students. Beegee is one of Nigeria\'s leading student online convenience stores with over 100 daily users. It is the official buying and selling platform for Bingham University students, Nigeria.',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Ecommerce'],
+    link: 'https://beegee.com.ng',
     status: 'Completed',
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'ML Model API',
-    description:
-      'Production-ready REST API for deploying and serving machine learning models with versioning and monitoring.',
-    technologies: ['FastAPI', 'Docker', 'PostgreSQL', 'Redis'],
-    link: '#',
-    status: 'Completed',
-    featured: false,
+    featured: true,
   },
 ];
 

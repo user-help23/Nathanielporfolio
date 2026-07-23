@@ -24,7 +24,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {

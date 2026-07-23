@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import Navigation from '@/components/common/Navigation';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import CertificationsSection from '@/components/sections/CertificationsSection';
 import ContactSection from '@/components/sections/ContactSection';
-import Footer from '@/components/common/Footer';
 
 type ThemeProps = {
   isDarkMode: boolean;
@@ -36,8 +35,8 @@ const principles = [
 ];
 
 const metrics = [
-  { value: '10+', label: 'Years building software' },
-  { value: '50+', label: 'Projects shipped' },
+  { value: '2', label: 'Years building software' },
+  { value: '10', label: 'Projects deployed and run' },
   { value: '5', label: 'Credential paths' },
 ];
 
@@ -60,129 +59,173 @@ function sectionTone(isDarkMode: boolean) {
     muted: isDarkMode ? 'text-gray-400' : 'text-gray-600',
     soft: isDarkMode ? 'text-gray-300' : 'text-gray-700',
     line: isDarkMode ? 'border-gray-800' : 'border-gray-200',
-    accent: isDarkMode ? 'text-blue-300' : 'text-blue-600',
+    accent: isDarkMode ? 'text-white' : 'text-black',
   };
 }
 
-function LandingHero({ isDarkMode }: ThemeProps) {
-  const reduceMotion = useReducedMotion();
-  const tone = sectionTone(isDarkMode);
+function LandingHero() {
+  const [displayedText, setDisplayedText] = useState('');
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const typingState = useRef({
+    timer: null as ReturnType<typeof setTimeout> | null,
+    textIndex: 0,
+    isDeleting: false,
+    currentText: '',
+  });
+
+  const roles = useMemo(() => ['Co-Founder · Chief Software Officer'], []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setDisplayedText(roles[0] ?? '');
+      return;
+    }
+
+    const run = () => {
+      const state = typingState.current;
+      const phrase = roles[state.textIndex];
+      if (!phrase) return;
+
+      if (!state.isDeleting && state.currentText === phrase) {
+        state.timer = setTimeout(() => {
+          state.isDeleting = true;
+          run();
+        }, 2200);
+        setDisplayedText(state.currentText);
+        return;
+      }
+
+      if (state.isDeleting && state.currentText === '') {
+        state.isDeleting = false;
+        state.textIndex = (state.textIndex + 1) % roles.length;
+        run();
+        return;
+      }
+
+      state.currentText = state.isDeleting
+        ? phrase.slice(0, state.currentText.length - 1)
+        : phrase.slice(0, state.currentText.length + 1);
+
+      setDisplayedText(state.currentText);
+      state.timer = setTimeout(run, state.isDeleting ? 30 : 75);
+    };
+
+    run();
+
+    return () => {
+      if (typingState.current.timer) clearTimeout(typingState.current.timer);
+    };
+  }, [reducedMotion, roles]);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (!heroRef.current) return;
+        const rect = heroRef.current.getBoundingClientRect();
+        setMouseOffset({
+          x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
+          y: ((e.clientY - rect.top) / rect.height - 0.5) * 2,
+        });
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [reducedMotion]);
 
   return (
-    <section id="home" className={`relative isolate min-h-screen overflow-hidden pt-28 ${tone.shell}`}>
+    <section
+      id="home"
+      ref={heroRef}
+      className="relative min-h-screen flex items-center overflow-hidden bg-transparent pt-28"
+    >
       <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 -z-10 ${isDarkMode ? 'opacity-100' : 'opacity-90'}`}
-        style={{
-          background: isDarkMode
-            ? 'radial-gradient(circle at top left, rgba(59,130,246,0.16), transparent 32%), linear-gradient(180deg, rgba(15, 23, 42, 1), rgba(7, 12, 24, 0.96))'
-            : 'radial-gradient(circle at top left, rgba(59,130,246,0.12), transparent 32%), linear-gradient(180deg, rgba(255,255,255,1), rgba(241,245,249,0.92))',
-        }}
-      />
+        className="absolute inset-0 overflow-hidden pointer-events-none transition-transform duration-100 ease-out"
+        style={{ transform: `translate(${mouseOffset.x * -20}px, ${mouseOffset.y * -20}px)` }}
+      >
+        <div
+          className="absolute left-1/2 top-1/2 w-[900px] h-[900px] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(148,163,184,0.03) 0%, transparent 70%)',
+            transform: 'translate(-50%, -50%)',
+            animation: reducedMotion ? 'none' : 'breathe 8s ease-in-out infinite',
+          }}
+        />
 
-      <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl grid-cols-1 items-center gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: reduceMotion ? 0 : 0.12 }}
-          className="max-w-3xl"
-        >
-          <motion.p
-            variants={fadeUp}
-            className={`mb-8 inline-flex border-b pb-2 text-sm font-semibold tracking-[0.18em] uppercase ${tone.accent} ${tone.line}`}
-          >
-            Nathaniel Patrick / TrianryTree
-          </motion.p>
+        {!reducedMotion && (
+          <>
+            <div className="signal-ring" />
+            <div className="signal-ring" style={{ animationDelay: '2s' }} />
+            <div className="signal-ring" style={{ animationDelay: '4s' }} />
+          </>
+        )}
+      </div>
 
-          <motion.h1
-            variants={fadeUp}
-            className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl"
-          >
-            Software that feels calm, intelligent, and built for the real world.
-          </motion.h1>
-
-          <motion.p
-            variants={fadeUp}
-            className={`mt-8 max-w-2xl text-lg leading-8 sm:text-xl ${tone.soft}`}
-          >
-            I help teams ship SaaS, machine learning products, and cloud systems with clarity, durable architecture, and predictable outcomes.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#projects"
-              className="group inline-flex items-center justify-center rounded-2xl bg-blue-600 px-7 py-4 text-sm font-semibold text-white shadow-xl shadow-blue-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent active:translate-y-0 active:scale-[0.98]"
-            >
-              View selected work
-              <svg className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-6-6 6 6-6 6" />
-              </svg>
-            </a>
-            <a
-              href="#contact"
-              className={`inline-flex items-center justify-center rounded-2xl border px-7 py-4 text-sm font-semibold transition duration-300 ${
-                isDarkMode
-                  ? 'border-gray-700 text-gray-100 hover:border-blue-500 hover:bg-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent'
-                  : 'border-gray-300 text-gray-950 hover:border-blue-500 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent'
-              } active:translate-y-0 active:scale-[0.98]`}
-            >
-              Start a conversation
-            </a>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="mt-12 grid gap-6 sm:grid-cols-3">
-            {[
-              { label: 'Years experience', value: '10+' },
-              { label: 'Projects shipped', value: '50+' },
-              { label: 'Credential paths', value: '5' },
-            ].map((item) => (
-              <div key={item.label} className="rounded-3xl border border-gray-200/80 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-colors duration-300 dark:border-gray-800 dark:bg-gray-950/70">
-                <p className="text-3xl font-semibold text-blue-600 dark:text-blue-300">{item.value}</p>
-                <p className={`mt-2 text-sm ${tone.muted}`}>{item.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.18, ease: 'easeOut' }}
-          className="relative"
-        >
-          <div className={`rounded-[2rem] border p-4 shadow-2xl ${tone.card} ${isDarkMode ? 'shadow-black/30' : 'shadow-slate-300/40'}`}>
-            <div className={`rounded-[1.4rem] border p-6 ${isDarkMode ? 'border-gray-800 bg-gray-950/80' : 'border-gray-200 bg-white'}`}>
-              <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className={`text-xs font-semibold uppercase tracking-[0.24em] ${tone.muted}`}>Design + engineering</p>
-                  <p className="mt-2 text-lg font-semibold">Dependable systems, clear decisions</p>
-                </div>
-                <div className="inline-flex h-12 min-w-[3rem] items-center justify-center rounded-3xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/25">
-                  NP
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  ['01', 'Align product, engineering, and customer context first.'],
-                  ['02', 'Ship the smallest useful system with reliable feedback.'],
-                  ['03', 'Measure, tighten, and scale with confidence.'],
-                ].map(([step, copy]) => (
-                  <article
-                    key={step}
-                    className={`rounded-2xl border p-5 transition duration-300 ${
-                      isDarkMode
-                        ? 'border-gray-800 bg-gray-900/60 hover:border-blue-600'
-                        : 'border-gray-200 bg-white hover:border-blue-300'
-                    }`}
-                  >
-                    <div className={`text-sm font-semibold ${tone.accent}`}>{step}</div>
-                    <p className={`mt-3 text-sm leading-6 ${tone.soft}`}>{copy}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mb-10">
+          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-5">
+            Nathaniel Patrick
+          </h1>
+          <div className="h-8 md:h-9 flex items-center">
+            <span className="text-xl md:text-2xl font-light text-white/80 relative inline-block min-w-[10ch]">
+              {displayedText}
+              <span className="inline-block w-[1.5px] h-[0.85em] ml-1 bg-white/40 align-middle animate-pulse" />
+            </span>
           </div>
+        </div>
+
+        <h2 className="max-w-3xl text-4xl md:text-6xl font-bold leading-tight text-white mb-6">
+          Software that feels calm, intelligent, and built for the real world.
+        </h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="max-w-2xl text-lg text-neutral-400 md:text-xl mb-10 leading-relaxed"
+        >
+          I help teams ship SaaS, machine learning products, and cloud systems with clarity, durable architecture, and predictable outcomes.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4"
+        >
+          <a
+            href="#projects"
+            className="inline-flex items-center justify-center bg-white text-black font-medium px-8 py-4 rounded-full transition-all hover:bg-gray-100 hover:scale-[1.02]"
+          >
+            View selected work →
+          </a>
+
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center bg-neutral-900 text-white border border-neutral-800 px-8 py-4 rounded-full transition-all hover:bg-neutral-800 hover:scale-[1.02]"
+          >
+            <span className="mr-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
+              N
+            </span>
+            Start a conversation
+          </a>
         </motion.div>
       </div>
     </section>
@@ -203,18 +246,18 @@ function TrustNarrative({ isDarkMode }: ThemeProps) {
           className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]"
         >
           <motion.div variants={fadeUp} transition={{ duration: 0.55 }}>
-            <p className={`mb-4 text-sm font-semibold uppercase tracking-[0.2em] ${tone.accent}`}>Why this matters</p>
+            <p className={`mb-4 text-sm font-semibold uppercase tracking-[0.2em] ${tone.accent}`}>About the work</p>
             <h2 className="text-4xl font-bold leading-tight md:text-5xl">
-              When software is unclear, people stop trusting it.
+              The best systems feel simple because someone absorbed the complexity.
             </h2>
           </motion.div>
 
           <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="space-y-6">
             <p className={`text-lg leading-8 ${tone.soft}`}>
-              Many teams build features before they build confidence. I focus on clarity, consistent state, and workflows that make each step obvious.
+              I work at the intersection of product judgment and backend discipline: shaping interfaces people can trust, then backing them with systems that handle pressure gracefully.
             </p>
             <p className={`text-lg leading-8 ${tone.muted}`}>
-              As co-founder and Chief Software Officer at TrianryTree, I help teams move from messy ideas to dependable products that users can adopt without friction.
+              As co-founder and Chief Software Officer at TrianryTree, I focus on software that can move from prototype to production without losing its human center.
             </p>
           </motion.div>
         </motion.div>
@@ -259,10 +302,10 @@ function CapabilityStrip({ isDarkMode }: ThemeProps) {
           {capabilities.map((capability) => (
             <span
               key={capability}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition duration-300 hover:-translate-y-0.5 ${
+              className={`rounded-full border px-4 py-2 text-sm font-medium               transition duration-300 hover:-translate-y-0.5 ${
                 isDarkMode
-                  ? 'border-gray-800 bg-gray-900 text-gray-300 hover:border-blue-700'
-                  : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-blue-300'
+                  ? 'border-gray-800 bg-gray-900 text-gray-300 hover:border-gray-700'
+                  : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-gray-300'
               }`}
             >
               {capability}
@@ -344,23 +387,27 @@ export default function Home() {
     return null;
   }
 
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+    return (
+    <div
+      className={`relative min-h-screen overflow-hidden transition-colors duration-300 ${
+        isDarkMode
+          ? 'bg-gray-950 text-gray-100'
+          : 'bg-white text-gray-950'
+      }`}
+    >
+      <div className="relative z-10">
+          <Navigation />
 
-  return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-gray-950 text-gray-100' : 'bg-white text-gray-950'}`}>
-      <Navigation isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-
-      <main>
-        <LandingHero isDarkMode={isDarkMode} />
-        <TrustNarrative isDarkMode={isDarkMode} />
-        <CapabilityStrip isDarkMode={isDarkMode} />
-        <WorkingMethod isDarkMode={isDarkMode} />
-        <ProjectsSection isDarkMode={isDarkMode} />
-        <CertificationsSection isDarkMode={isDarkMode} />
-        <ContactSection isDarkMode={isDarkMode} />
-      </main>
-
-      <Footer isDarkMode={isDarkMode} />
+        <main>
+          <LandingHero />
+          <TrustNarrative isDarkMode={isDarkMode} />
+          <CapabilityStrip isDarkMode={isDarkMode} />
+          <WorkingMethod isDarkMode={isDarkMode} />
+          <ProjectsSection isDarkMode={isDarkMode} />
+          <CertificationsSection isDarkMode={isDarkMode} />
+          <ContactSection isDarkMode={isDarkMode} />
+        </main>
+      </div>
     </div>
   );
 }
